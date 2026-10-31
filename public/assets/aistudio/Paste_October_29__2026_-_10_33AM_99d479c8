@@ -1,0 +1,1489 @@
+# SAMRAT MONOPOLY: BHARAT & WORLD EDITION
+# ULTIMATE MEGA PROMPT — FINISH THE ENTIRE GAME TO PROFESSIONAL QUALITY
+
+You are the lead game director, principal software architect, senior full-stack engineer, gameplay systems designer, UI/UX specialist, visual design director, multiplayer engineer, performance engineer, security reviewer, and QA lead for Samrat Monopoly: Bharat & World Edition.
+
+Your responsibility is to take the EXISTING PROJECT, inspect its actual implementation, fix all known problems, finish all incomplete features, optimize the entire application, and deliver a complete, polished, genuinely playable board game.
+
+I do not want another prototype. I do not want a static mockup. I do not want a landing page with buttons that do nothing. I do not want an interface that looks impressive in a screenshot but fails during gameplay.
+
+**I want the entire game finished, visually excellent, easy to play, technically reliable, responsive, and properly tested.**
+
+Work directly in the existing project. Preserve working functionality. Make real code changes. Verify those changes. Continue until all feasible work is complete.
+
+Do not stop after an audit, a plan, a list of recommendations, or a successful build.
+
+---
+
+# 1. PRESERVE THE EXISTING PROJECT AND CREATE A SAFE CHECKPOINT
+
+The project has already undergone multiple rounds of development.
+
+Previous work included files such as:
+
+- `src/game/boardData.ts`
+- `src/game/rules.ts`
+- `src/game/rules.test.ts`
+- `server.ts`
+- `src/utils/sound.ts`
+- `src/components/GameTokens.tsx`
+- `src/components/TitleScreen.tsx`
+- `src/components/GameBoard.tsx`
+- `src/components/ModalsAndDrawers.tsx`
+- `src/components/PixelArtAssets.tsx`
+- `src/components/PlacePhoto.tsx`
+- `src/components/heritagePerks.ts`
+- `src/App.tsx`
+
+Inspect the actual project structure because paths and implementations may have changed.
+
+The game has previously been developed with:
+- Bharat Samrat Atlas, containing Indian cities and landmarks.
+- Global Tycoon Atlas, containing world cities and Indian landmarks.
+- Property purchases, rent, auctions, trading, Havelis, and Mahals.
+- Historical event cards.
+- WebSocket multiplayer.
+- Room codes and in-game chat.
+- An Action Log.
+- Mudra Coins, challenges, tokens, and cosmetic progression.
+- Leaderboards and profile statistics.
+- A property-photo component and heritage perks.
+- Existing tests for important game rules.
+
+These are implementation claims to verify, not assumptions that everything currently works.
+
+Before making substantial changes:
+
+1. Inspect the repository and identify the current branch and project structure.
+2. Determine how the application is started, built, tested, and deployed.
+3. Inspect existing changes and avoid overwriting unrelated user work.
+4. Create a version-control checkpoint or a separate complete backup of the current project.
+5. Record the baseline build and test results.
+6. Identify the current implementation of every major feature.
+7. Establish a prioritized defect list.
+
+Never delete the only working copy.
+
+Never replace the whole application simply because a component is difficult to understand.
+
+Prefer targeted fixes, focused refactoring, and incremental verification.
+
+If an existing feature is only partially implemented, finish it using the current architecture wherever practical.
+
+---
+
+# 2. THE EXACT VISUAL DIRECTION
+
+The visual direction is extremely important.
+
+I want a **minimalist black-and-white board and interface with naturally colored photographs of real places**.
+
+This does not mean making every image black and white.
+
+The distinction is:
+
+- Board: predominantly black, white, and neutral tones.
+- UI: predominantly black, white, and neutral tones.
+- Landmark photographs: genuine photographs in their natural colors.
+- Player identities: restrained colors or distinct symbols where needed.
+- Ownership: clear, understated visual indicators.
+- Gameplay highlights: minimal, purposeful, and easy to understand.
+
+The game must feel like a carefully art-directed premium board game, combining editorial design, architectural photography, and a refined physical-board aesthetic.
+
+Aim for a design that feels intentional, calm, distinctive, and expensive without unnecessary decoration.
+
+## 2.1 Color palette
+
+Use a restrained palette built around:
+
+- Deep black or charcoal for dark surfaces.
+- Clean white or warm white for the board.
+- Neutral gray for secondary information.
+- Fine dark borders and subtle dividers.
+- Small, consistent player-specific accents.
+- Natural colors in actual photographs.
+
+Avoid:
+- Neon colors.
+- Purple AI-style gradients.
+- Rainbow gradients.
+- Artificial radial glows.
+- Excessive glassmorphism.
+- Glossy, oversized dashboard cards.
+- Candy-colored badges.
+- Decorative progress bars.
+- Excessive rounded pills.
+- Large colored header strips.
+- Unnecessary shadows.
+- Decorative animations that compete with the board.
+
+Do not introduce a new design language on every screen.
+
+The title screen, board, property dossier, action controls, dialogs, settings, player profiles, and end-game screen must look like parts of the same product.
+
+## 2.2 Typography
+
+Choose a consistent, highly readable type system.
+
+Use:
+- Clear sans-serif typography for interface text.
+- A restrained monospace style for monetary values when appropriate.
+- Consistent type sizes and line heights.
+- Strong contrast between headings, labels, and secondary information.
+- Tabular numerals for balances and prices where supported.
+
+Do not use tiny typography to force excessive information into a small area.
+
+Do not use excessive letter spacing.
+
+Do not use uppercase text everywhere.
+
+Do not truncate important words.
+
+Every screen should have an obvious visual hierarchy.
+
+## 2.3 Avoid generic AI-generated design
+
+Do not make the game look like an automatically assembled AI dashboard.
+
+Avoid:
+- Repeated cards inside cards.
+- Excessive decorative borders.
+- Unnecessary section headings.
+- Repeated labels that communicate the same information.
+- Fake analytical charts.
+- Decorative statistics that do not support gameplay.
+- Glowing panels surrounding ordinary text.
+- Excessive badges and icon combinations.
+- Huge empty hero sections during active gameplay.
+- Overdesigned controls that obscure the board.
+
+Use whitespace deliberately.
+
+Every visual element must help the player understand the game, navigate the interface, or enjoy the experience.
+
+---
+
+# 3. FIX ALL TEXT CLIPPING AND BOARD CROPPING
+
+This is a critical existing problem.
+
+Words are being cut off, countries are not fully visible, and some parts of the interface appear crowded or clipped.
+
+Fix the actual underlying causes rather than applying arbitrary CSS patches.
+
+Inspect all relevant components, layouts, stylesheets, and shared design tokens.
+
+Investigate:
+- Fixed widths and heights.
+- Incorrect grid sizing.
+- Flexbox shrink behavior.
+- Overflow settings.
+- `overflow: hidden`.
+- `min-width: 0`.
+- `min-height: 0`.
+- Absolute positioning.
+- Text wrapping.
+- `white-space: nowrap`.
+- Line heights.
+- Letter spacing.
+- Font-size scaling.
+- Image dimensions.
+- Nested scroll containers.
+- Responsive breakpoints.
+- Buttons that cannot fit their labels.
+- Drawers that exceed the viewport.
+- Modals that cover important controls.
+- Board dimensions calculated from the wrong available space.
+
+## Required text behavior
+
+Every important label must be readable.
+
+Ensure:
+- Country names are fully visible.
+- City names remain identifiable.
+- Property prices are not clipped.
+- Player balances are readable.
+- Player names do not overlap other elements.
+- Action buttons display complete labels.
+- Modal headings and descriptions fit.
+- Property details are not obscured by images.
+- Action Log entries remain readable.
+- The active player is easy to identify.
+- Important warnings are not truncated.
+- The end-game results are fully visible.
+
+Never solve clipping by shrinking every font.
+
+Never conceal a layout defect by hiding overflow without understanding what is being clipped.
+
+When a full landmark name cannot fit on a board tile, show a deliberate short label on the tile and preserve the full name in the property dossier.
+
+Use intentional two-line wrapping where appropriate.
+
+Adjust tile proportions and internal layouts intelligently.
+
+Do not allow a long country name to push the rest of the board out of position.
+
+---
+
+# 4. REDESIGN THE BOARD AS A PREMIUM PLAYABLE BOARD GAME
+
+The board is the centerpiece of the experience.
+
+Retain the intended perimeter-based Monopoly layout and all existing property data.
+
+Make the board clean, balanced, readable, and visually distinctive.
+
+## 4.1 Board layout
+
+Requirements:
+
+- All four corners remain visible.
+- All perimeter properties remain visible.
+- The board does not unintentionally extend outside the viewport.
+- The board preserves its intended proportions.
+- Tiles remain aligned.
+- Property images retain consistent proportions.
+- Tile content does not collide with adjacent tiles.
+- The center court remains visually calm.
+- The center court does not obscure properties.
+- The controls do not consume unnecessary board space.
+- The player tokens remain visible.
+- Ownership indicators remain distinguishable.
+- Property values remain easy to read.
+
+Do not cram every gameplay feature into the center of the board.
+
+Separate the board from secondary information when necessary.
+
+Use a property inspection panel for information that does not belong on the board itself.
+
+## 4.2 Responsive layout
+
+Adapt the layout to the available viewport rather than relying on a single fixed size.
+
+Test:
+
+- 1920 × 1080.
+- 1440 × 900.
+- 1366 × 768.
+- 1024 × 768.
+- 768 × 1024.
+- 390 × 844.
+
+On desktop:
+- Keep the board prominent.
+- Place secondary controls in a clearly organized region.
+- Avoid unnecessary scrolling when sufficient screen space exists.
+
+On smaller laptops:
+- Scale the board proportionally.
+- Preserve readable labels.
+- Reorganize secondary information where needed.
+
+On mobile:
+- Do not shrink the entire board until it becomes unusable.
+- Provide an accessible way to inspect properties.
+- Provide a clear action panel.
+- Preserve all essential actions.
+- Avoid accidental horizontal overflow.
+- Use a dedicated board view and actions/details view when appropriate.
+
+Make the best layout decisions for each viewport.
+
+Do not force every device to use the same arrangement.
+
+---
+
+# 5. USE AUTHENTIC, FULL-COLOR PHOTOGRAPHS OF REAL LANDMARKS
+
+The previous pixel-art approach is not the desired final direction.
+
+Use authentic photographs of actual locations.
+
+Do not use:
+- Pixel-art flags as substitutes for landmark photographs.
+- Cartoon illustrations.
+- AI-looking landmark drawings.
+- Generic images unrelated to the property.
+- Repeated copies of the same photograph.
+- Placeholder images presented as authentic photographs.
+
+The photographs must retain their natural colors even though the board and interface are minimalist.
+
+## 5.1 Bharat edition
+
+Audit and provide appropriate photographs for the actual places represented in the existing property data, including relevant locations such as:
+
+- Taj Mahal, Agra.
+- Hawa Mahal, Jaipur.
+- City Palace, Udaipur.
+- Gateway of India, Mumbai.
+- Varanasi Ghats, Varanasi.
+- Charminar, Hyderabad.
+- Victoria Memorial, Kolkata.
+- Howrah Bridge, Kolkata.
+- Golden Temple, Amritsar.
+- Chennai and Mahabalipuram landmarks.
+- Bengaluru landmarks.
+- Kochi heritage locations.
+- Goa landmarks.
+- Ahmedabad and GIFT City.
+- New Delhi landmarks.
+- CSMT, Mumbai.
+- ISRO or Sriharikota launch-related landmarks where represented.
+- Other locations present in the existing Bharat board data.
+
+Preserve the correct relationship between each property and its actual location.
+
+## 5.2 Global edition
+
+Audit the actual properties in the World board and provide appropriate photographs for locations such as:
+
+- Eiffel Tower, Paris.
+- Big Ben and Westminster, London.
+- Colosseum, Rome.
+- Acropolis and Parthenon, Athens.
+- Great Pyramids of Giza, Cairo.
+- Marina Bay Sands, Singapore.
+- Sydney Opera House, Sydney.
+- Tokyo landmarks.
+- Burj Khalifa, Dubai.
+- Statue of Liberty and Manhattan, New York.
+- Other global landmarks represented in the current board data.
+
+Do not assume the example list is the entire property catalog. Use the actual board data as the source of truth.
+
+## 5.3 Image sourcing and validation
+
+Inspect `src/components/PlacePhoto.tsx` and the existing property definitions.
+
+For each image:
+1. Verify that it depicts the correct landmark.
+2. Prefer reliable sources with appropriate reuse rights.
+3. Verify that the URL is valid wherever external verification tools are available.
+4. Confirm the content type when technically possible.
+5. Detect image-loading failures.
+6. Avoid relying on unstable third-party hotlinks.
+7. Use locally stored assets when practical, reliable, and appropriately licensed.
+8. Use responsive image sizes.
+9. Preserve aspect ratios.
+10. Apply sensible cropping.
+11. Keep the important landmark visible.
+12. Provide a graceful fallback for failed images.
+13. Avoid repeated downloads.
+14. Reserve image dimensions to reduce layout shifts.
+15. Avoid loading every large image unnecessarily at startup.
+
+Do not claim that an image was verified if it was not actually checked.
+
+Do not claim that all locations have authentic photographs unless the assets have been audited.
+
+If an image cannot be verified, clearly identify it as an unresolved asset rather than pretending it is correct.
+
+Keep the visual treatment of photographs consistent across both board editions.
+
+The board should show the place itself, not a pixel-art representation of its flag or landmark.
+
+---
+
+# 6. PROPERTY TILE DESIGN
+
+Every tile should communicate the most important information immediately.
+
+Prioritize:
+
+1. Recognizable landmark photograph.
+2. Readable property or city name.
+3. Country or Indian state where applicable.
+4. Purchase price.
+5. Ownership indicator.
+6. Player token or relevant state when appropriate.
+
+Do not display the complete rulebook on every tile.
+
+Move secondary information into a property dossier.
+
+A selected property dossier should contain:
+
+- Landmark photograph.
+- Full property name.
+- Country or state.
+- Purchase price.
+- Current rent.
+- Rent schedule where appropriate.
+- Current owner.
+- Property-group information.
+- Development status.
+- Building costs.
+- Heritage perk.
+- Available actions.
+- Relevant ownership or auction status.
+
+The dossier must be easy to open, inspect, and close.
+
+Make the full property information available without overcrowding the board.
+
+Use consistent styling across all properties.
+
+---
+
+# 7. COMPLETE THE ENTIRE MONOPOLY GAME LOOP
+
+A match must be playable from beginning to end.
+
+Verify and finish the complete sequence:
+
+1. Open the application.
+2. Select Bharat Samrat or Global Tycoon.
+3. Start a new game or join an existing room.
+4. Configure available match settings.
+5. Select a player token.
+6. Initialize players, balances, ownership, positions, and turn order.
+7. Roll the dice.
+8. Calculate movement.
+9. Move the active player.
+10. Resolve the destination tile.
+11. Offer the correct property purchase, auction, rent, or special-space interaction.
+12. Apply the appropriate transaction.
+13. Handle historical event cards.
+14. Handle special movement and starting-space rewards.
+15. Allow legal development and trading.
+16. Finish the turn.
+17. Advance to the correct next player.
+18. Continue until the defined ending condition is reached.
+19. Determine the result.
+20. Display the winner and final match statistics.
+21. Allow the user to start a new match or return to the menu.
+
+No modal should permanently block gameplay.
+
+No invalid action should leave the active player stuck.
+
+No turn should become impossible to finish because a property is unavailable, a player cannot afford a purchase, or an unexpected event occurs.
+
+Every important state transition must have a defined outcome.
+
+---
+
+# 8. GAME RULES AND ECONOMIC CORRECTNESS
+
+Audit the rules engine before modifying it.
+
+Use the existing rule definitions wherever they are sound.
+
+Create one authoritative implementation for each major mechanic rather than duplicating rule calculations across frontend components.
+
+## 8.1 Dice and movement
+
+Verify:
+- Valid dice outcomes.
+- Movement calculations.
+- Correct handling of passing the starting tile.
+- Starting allowance rewards.
+- Special movement cards.
+- Destination tile processing.
+- Turn-state transitions.
+- Prevention of duplicate rolls.
+- Prevention of duplicate tile resolution.
+
+## 8.2 Property purchases
+
+Verify:
+- Only available properties can be purchased.
+- Only authorized players can purchase.
+- Sufficient funds are required.
+- Money transfers correctly.
+- Ownership updates correctly.
+- The UI reflects the actual result.
+- Repeated requests do not charge the player twice.
+- A rejected purchase leaves the game in a valid state.
+
+## 8.3 Rent
+
+Verify:
+- Base rent calculations.
+- Group ownership bonuses.
+- Development-based rent.
+- Heritage perks.
+- Special property rules.
+- Correct payer and recipient.
+- Sufficient-funds handling.
+- Bankruptcy handling.
+- Prevention of duplicate rent collection.
+
+## 8.4 Havelis and Mahals
+
+Verify:
+- The player satisfies ownership requirements.
+- The correct property group is eligible.
+- Construction costs are correct.
+- Development limits are enforced.
+- Rent schedules update correctly.
+- Invalid construction is rejected.
+- The UI displays the actual development state.
+
+## 8.5 Auctions
+
+Verify:
+- Correct auction initialization.
+- Valid bids.
+- Affordability.
+- Highest-bidder tracking.
+- Out-of-turn restrictions where applicable.
+- Auction completion.
+- Winner determination.
+- Correct money transfer.
+- Correct property transfer.
+- Handling of no valid bids.
+- Handling of player disconnections.
+- Prevention of duplicate winners.
+
+## 8.6 Trading
+
+Verify:
+- Only owned properties can be offered.
+- Offered cash amounts are valid.
+- Trade proposals have clear states.
+- Both parties understand the terms.
+- Acceptance transfers assets exactly once.
+- Rejected offers are cancelled.
+- Expired offers do not remain actionable.
+- Invalid trades cannot corrupt the game state.
+
+## 8.7 Bankruptcy and winning
+
+Define consistent behavior for:
+- Inability to pay obligations.
+- Bankruptcy.
+- Asset settlement.
+- Property transfers.
+- Player elimination.
+- Remaining-player count.
+- Victory determination.
+- Ties or exceptional end states.
+- Attempts to act after elimination.
+- Attempts to act after the match ends.
+
+Do not silently change established game rules.
+
+If a rule is currently incomplete, document the decision, implement it consistently, and add tests.
+
+---
+
+# 9. HERITAGE PERKS AND UNIQUE GAMEPLAY
+
+Retain the existing heritage perks and distinctive regional mechanics where they are implemented correctly.
+
+The current project has described perks associated with locations such as Mumbai, Tokyo, Paris, Cairo, Bengaluru, New York, Delhi, and Jaipur.
+
+Inspect the actual rules and property data before relying on those descriptions.
+
+Every displayed perk must have a corresponding implemented effect.
+
+For each perk, verify:
+- Its triggering condition.
+- The affected player or property.
+- Its financial or gameplay effect.
+- Whether it stacks with other effects.
+- Whether it can trigger multiple times accidentally.
+- Whether it is correctly recorded in the Action Log.
+- Whether the interface describes it accurately.
+
+If a perk is only a UI description, implement and test its intended effect or explicitly mark it as unavailable.
+
+Do not invent additional mechanics simply to make the feature list longer.
+
+Make each property feel distinctive without making the rules needlessly complicated.
+
+Show a short, readable explanation when a player inspects a landmark.
+
+The experience should reward understanding and strategic decisions rather than memorizing a large wall of text.
+
+---
+
+# 10. HISTORICAL EVENT CARDS AND MARKET MECHANICS
+
+Audit the existing Itihaas and Artha Shastra event systems.
+
+Retain appropriate implemented historical events, such as:
+- Rajendra Chola's maritime expedition.
+- The 1853 railway milestone.
+- The Mangalyaan mission.
+- The growth of digital payments.
+- Sher Shah Suri's road network.
+- Jaipur's Jantar Mantar.
+
+Verify each event's description and effect.
+
+Make event outcomes clear to the player.
+
+Ensure that:
+- The correct card is selected.
+- Rewards and penalties are calculated correctly.
+- Movement cards resolve properly.
+- Treasury changes are recorded.
+- Cards cannot trigger twice from one action.
+- Invalid or unexpected states are handled.
+- Historical descriptions do not contradict the actual effect.
+
+Audit any existing economic climate or market volatility system.
+
+If Bull Expansion, Bear Recession, or Equilibrium exists, verify that each state changes the intended economic rules.
+
+Do not display market indicators that have no gameplay effect.
+
+Keep all financial changes understandable and auditable.
+
+---
+
+# 11. MULTIPLAYER MUST BE REAL AND RELIABLE
+
+Inspect the existing WebSocket server and multiplayer implementation.
+
+Do not replace functioning multiplayer with simulated local interactions.
+
+The server must be authoritative for important state changes.
+
+Verify:
+
+- Room creation.
+- Unique room codes.
+- Joining rooms.
+- Invalid room codes.
+- Player capacity.
+- Player identity.
+- Turn order.
+- Dice rolls.
+- Player movement.
+- Purchases.
+- Rent.
+- Auctions.
+- Trading.
+- Event cards.
+- Chat.
+- Action Log events.
+- Disconnections.
+- Reconnection.
+- Room closure.
+- Match completion.
+
+## 11.1 Authoritative actions
+
+The server must validate:
+- Player identity.
+- Current turn.
+- Legal action.
+- Current match status.
+- Ownership.
+- Affordability.
+- Applicable rules.
+- Resulting state.
+
+Do not trust client-provided prices, rent amounts, auction winners, balances, or ownership changes.
+
+The server must reject invalid actions even when a modified client sends them.
+
+## 11.2 Concurrency
+
+Prevent:
+- Double purchases.
+- Duplicate rent charges.
+- Simultaneous conflicting ownership transfers.
+- Duplicate auction settlement.
+- Duplicate reward claims.
+- Stale updates overwriting newer state.
+- Two clients advancing the same turn.
+- Actions being accepted after match completion.
+
+Use transaction boundaries, state-version checks, unique operation identifiers, or equivalent mechanisms where appropriate to the current architecture.
+
+## 11.3 Reconnection
+
+Handle:
+- Temporary network loss.
+- Reconnection attempts.
+- Room membership recovery.
+- State resynchronization.
+- Expired rooms.
+- Finished matches.
+- Rejected actions.
+- Server errors.
+
+Clearly distinguish connecting, disconnected, reconnecting, and connected states.
+
+Test multiple real clients where possible.
+
+Do not claim that multiplayer is verified simply because a WebSocket connection opens.
+
+---
+
+# 12. FINISH THE ACTION LOG AND NOTIFICATIONS
+
+Retain and complete the existing Action Log.
+
+It should record actual significant match events, including:
+
+- Property purchases.
+- Rent payments.
+- Auctions.
+- Trades.
+- Building construction.
+- Historical event cards.
+- Movement rewards.
+- Turn changes.
+- Bankruptcy.
+- Match completion.
+
+Each entry should identify the relevant player, event, property, and monetary amount when applicable.
+
+Use a clean chronological list.
+
+Provide useful search and filtering without overwhelming the interface.
+
+The drawer must:
+- Open and close reliably.
+- Fit within the viewport.
+- Remain readable.
+- Preserve scroll position appropriately.
+- Display new events correctly.
+- Avoid duplicate entries.
+- Handle an empty history.
+- Handle a long match history.
+- Support keyboard navigation.
+
+Preserve the `L` shortcut if it exists and works.
+
+Ensure it does not interfere with text entry or unrelated keyboard interactions.
+
+Use notifications for important state changes, but avoid flooding the screen with repetitive messages.
+
+---
+
+# 13. COMPLETE MUDRA COINS, CHALLENGES, COSMETICS, AND PROGRESSION
+
+Audit the existing reward systems.
+
+Verify:
+- Daily challenge initialization.
+- Challenge progress.
+- Challenge completion.
+- Reward eligibility.
+- Reward claiming.
+- Duplicate-claim prevention.
+- Mudra Coin balance changes.
+- Cosmetic unlocks.
+- Token selection.
+- Achievement tracking.
+- Profile statistics.
+- Leaderboard updates.
+- Persistence across refreshes and reconnects.
+
+Rewards must not be awarded repeatedly by sending the same request.
+
+The server must validate competitive or financial rewards when multiplayer is involved.
+
+Cosmetic unlocks must not secretly create pay-to-win advantages.
+
+If a leaderboard is presented as real, it must use actual supported results rather than fabricated entries.
+
+If a profile statistic is displayed, it must reflect actual tracked data.
+
+If a feature is not fully implemented, complete it where feasible or clearly identify the remaining limitation.
+
+---
+
+# 14. PAYMENT AND CHECKOUT HONESTY
+
+Inspect the existing BharatPay checkout interface.
+
+A payment modal is not a payment integration.
+
+Do not claim that UPI, RuPay, Visa, NetBanking, or other real payments are functional unless a legitimate payment provider is integrated and the transaction flow has been verified.
+
+If payments are not implemented:
+- Keep the game fully playable without them.
+- Remove misleading success states.
+- Clearly distinguish a demonstration interface from a real payment system.
+- Do not collect or store raw card information.
+- Do not expose payment secrets.
+- Do not claim certifications or regulatory compliance without evidence.
+
+Do not invent a payment integration merely to make the application appear complete.
+
+---
+
+# 15. ACCOUNT SECURITY AND DATA INTEGRITY
+
+Audit authentication, authorization, profile storage, sessions, and server-side validation.
+
+Verify:
+- Passwords are not stored in plaintext.
+- Password hashing is configured correctly.
+- Authentication checks are enforced on protected actions.
+- Sensitive information is not exposed in frontend bundles.
+- Secrets are stored using appropriate environment variables.
+- User input is validated.
+- Private data is not included in public broadcasts.
+- Room actions are authorized.
+- User-controlled data cannot directly overwrite authoritative state.
+- Error messages do not expose internal secrets.
+- Persistent records have suitable integrity constraints.
+
+If the application claims to use scrypt, AES-256-GCM, or other security mechanisms, inspect the actual implementation.
+
+Verify key management, initialization, storage, and use.
+
+Do not claim meaningful encryption merely because an encryption function appears in the code.
+
+Do not print secrets in logs.
+
+Do not weaken security to make a feature easier to implement.
+
+If a security defect is discovered, fix it and add a regression test where practical.
+
+---
+
+# 16. FRONTEND ARCHITECTURE AND STATE MANAGEMENT
+
+Inspect the existing frontend architecture before choosing a refactoring strategy.
+
+Avoid creating multiple competing sources of truth for:
+- Player balances.
+- Player positions.
+- Property ownership.
+- Building counts.
+- Active player.
+- Current turn.
+- Auction state.
+- Trade state.
+- Match status.
+- Historical events.
+
+Establish a clear relationship between authoritative game state and derived UI state.
+
+Verify that:
+- State transitions are deterministic where expected.
+- Components display the latest valid state.
+- Stale closures do not apply old values.
+- Asynchronous requests are handled safely.
+- Timers are cleaned up.
+- Event listeners are removed when appropriate.
+- WebSocket subscriptions do not accumulate.
+- Modal state does not corrupt gameplay state.
+- Repeated renders do not trigger repeated transactions.
+- Failed actions do not leave the UI in an impossible state.
+
+Avoid unnecessary architectural rewrites.
+
+Use the existing framework and libraries unless a concrete problem justifies a change.
+
+---
+
+# 17. PERFORMANCE OPTIMIZATION
+
+Optimize the entire application without sacrificing gameplay correctness, photograph quality, or readability.
+
+## 17.1 Frontend rendering
+
+Inspect actual render behavior.
+
+Improve:
+- Unnecessary full-board rerenders.
+- Repeated expensive calculations.
+- Repeated transformation of property data.
+- Unnecessary state updates.
+- Excessive event handlers.
+- Unnecessary dependencies.
+- Large component bundles.
+- Redundant image requests.
+- Expensive effects.
+- Inefficient list rendering.
+
+Memoize components or derived values only when appropriate.
+
+Do not add memoization everywhere without a reason.
+
+Ensure that opening a drawer or updating a notification does not unnecessarily rebuild the entire board.
+
+## 17.2 Images
+
+Use efficient image loading.
+
+- Load important visible assets promptly.
+- Lazy-load appropriate offscreen images.
+- Use appropriately sized image variants.
+- Preserve natural aspect ratios.
+- Avoid layout shifts.
+- Avoid loading unnecessary full-resolution images.
+- Prevent duplicate requests.
+- Handle network failures gracefully.
+- Avoid large base64 image payloads in source files unless genuinely appropriate.
+- Prefer reliable local assets for critical photographs when practical and properly licensed.
+
+## 17.3 Backend
+
+Inspect:
+- Repeated database operations.
+- Inefficient queries.
+- Unnecessary full-state broadcasts.
+- Excessive event logging.
+- Unbounded collections.
+- Timer cleanup.
+- Socket cleanup.
+- Concurrent updates.
+- Room lifecycle management.
+
+Avoid resource leaks and unnecessary network traffic.
+
+Use suitable database indexes and constraints when supported by the current persistence layer.
+
+Do not add a new database or framework without a concrete need.
+
+## 17.4 Performance measurement
+
+Where tools permit, measure:
+- Build output and bundle sizes.
+- Initial loading behavior.
+- Rendering responsiveness.
+- Image loading.
+- Memory or resource leaks.
+- Multiplayer message volume.
+- Significant backend bottlenecks.
+
+Record actual measurements.
+
+Do not fabricate performance improvements or numerical benchmarks.
+
+The application should feel responsive during ordinary gameplay on typical desktop and laptop hardware.
+
+---
+
+# 18. SOUND, ANIMATIONS, AND PLAYER FEEDBACK
+
+Audit the existing sound implementation.
+
+Verify:
+- Dice sounds play at the correct time.
+- Sound settings actually enable and disable audio.
+- Repeated actions do not create overlapping sound effects.
+- Missing audio files do not crash the application.
+- Audio respects browser interaction restrictions.
+- Sound settings persist appropriately when supported.
+
+Use subtle, fast animations for:
+- Dice rolls.
+- Player movement.
+- Property selection.
+- Purchases.
+- Ownership changes.
+- Drawer transitions.
+- Important notifications.
+- Match completion.
+
+Do not delay gameplay for decorative animations.
+
+Do not add excessive particles, glows, bouncing panels, or distracting transitions.
+
+Respect reduced-motion preferences.
+
+Use visual feedback to communicate actual game state rather than merely making the application look animated.
+
+---
+
+# 19. COMPLETE TITLE SCREEN AND GAME NAVIGATION
+
+Finish the title screen and all major navigation flows.
+
+A player should be able to understand the game quickly.
+
+The title screen should communicate:
+- The identity of Samrat Monopoly.
+- The difference between the Bharat and Global editions.
+- How to start a match.
+- How to join a room when multiplayer is supported.
+- Where to access settings.
+- Where to find instructions.
+- Where to view relevant profile or progression features.
+
+Avoid an oversized promotional page that makes the actual game difficult to reach.
+
+Provide sensible navigation between:
+- Title screen.
+- Board selection.
+- New match.
+- Join room.
+- Active game.
+- Property details.
+- Action Log.
+- Settings.
+- Profile and progression.
+- Results.
+- Restart or exit.
+
+Ensure browser refreshes and navigation do not silently create corrupted game states.
+
+---
+
+# 20. FIRST-TIME PLAYER EXPERIENCE
+
+Make the game understandable to someone who has never played this particular version.
+
+Provide concise, optional help for:
+- Dice rolling.
+- Property purchases.
+- Rent.
+- Property groups.
+- Havelis and Mahals.
+- Auctions.
+- Trading.
+- Special spaces.
+- Heritage perks.
+- Turn progression.
+- Winning conditions.
+
+Do not show a huge tutorial wall before gameplay.
+
+Use contextual guidance when the player first encounters a mechanic.
+
+Explain why an action is disabled when that explanation helps.
+
+Use clear action labels rather than relying entirely on keyboard shortcuts.
+
+Keep keyboard shortcuts available as additional convenience.
+
+Allow experienced players to dismiss or skip optional guidance.
+
+---
+
+# 21. ACCESSIBILITY AND USABILITY
+
+Make the game usable by as many players as practical.
+
+Verify:
+- Semantic controls.
+- Keyboard navigation.
+- Visible focus indicators.
+- Accessible button names.
+- Readable contrast.
+- Adequate touch targets.
+- Useful modal focus behavior.
+- Escape-key handling where appropriate.
+- Screen-reader descriptions for important actions.
+- Reduced-motion support.
+- Clear disabled states.
+- Ownership indicators that do not rely solely on color.
+
+Avoid tiny controls on mobile.
+
+Do not let a keyboard shortcut unexpectedly trigger when a user is typing in an input or textarea.
+
+Do not trap keyboard focus outside a modal or drawer.
+
+Keep the interface predictable and consistent.
+
+---
+
+# 22. RESPONSIVE DESIGN AND BROWSER VERIFICATION
+
+Test the real application at:
+
+- 1920 × 1080.
+- 1440 × 900.
+- 1366 × 768.
+- 1024 × 768.
+- 768 × 1024.
+- 390 × 844.
+
+At every supported viewport, inspect:
+- Complete board visibility.
+- Tile alignment.
+- Country names.
+- City names.
+- Property prices.
+- Player balances.
+- Active-player indicators.
+- Action buttons.
+- Property dossiers.
+- Image cropping.
+- Action Log.
+- Modals.
+- Drawer dimensions.
+- Vertical overflow.
+- Horizontal overflow.
+- Text clipping.
+- Focus behavior.
+- Touch interactions where applicable.
+
+Use real browser automation or screenshots if the environment supports it.
+
+Inspect the actual rendered output rather than trusting source-code appearance.
+
+If a browser-testing tool is unavailable, state that limitation and use the strongest alternative available.
+
+A successful TypeScript build is not proof that the visual layout is correct.
+
+---
+
+# 23. AUTOMATED TESTING AND REGRESSION PREVENTION
+
+Inspect and preserve the existing test suite.
+
+The existing project has previously included tests for group-monopoly rent doubling, property purchases, auction validation, trading, event cards, and win conditions.
+
+Verify the actual current tests and their results.
+
+Expand coverage for the following areas.
+
+## Rules tests
+- Dice movement.
+- Passing the starting tile.
+- Property purchases.
+- Insufficient funds.
+- Rent.
+- Group ownership.
+- Development.
+- Heritage perks.
+- Auctions.
+- Trading.
+- Historical events.
+- Bankruptcy.
+- Victory.
+- Invalid actions.
+- Duplicate requests.
+- Match termination.
+
+## Integration tests
+- Complete turn execution.
+- Multiple consecutive turns.
+- Multiple property purchases.
+- Rent settlement.
+- Auction completion.
+- Trade acceptance and rejection.
+- Event resolution.
+- Game completion.
+- Persistent state where implemented.
+- Action Log consistency.
+
+## Frontend tests
+- Board selection.
+- Property inspection.
+- Contextual actions.
+- Disabled actions.
+- Modal opening and closing.
+- Action Log.
+- Keyboard controls.
+- Loading states.
+- Error states.
+- Responsive layouts.
+- Image failure handling.
+
+## Multiplayer tests
+- Room creation.
+- Room joining.
+- Invalid room codes.
+- Out-of-turn actions.
+- Unauthorized actions.
+- Simultaneous purchases.
+- Duplicate requests.
+- Auctions.
+- Trading.
+- Disconnects.
+- Reconnection.
+- State resynchronization.
+- Match completion.
+
+## End-to-end test
+
+Play at least one complete match using the actual application.
+
+Where possible, automate the flow with the existing browser-testing infrastructure.
+
+Verify that the match reaches a legitimate ending without hidden developer shortcuts, manual database changes, or fabricated responses.
+
+If complete multiplayer testing requires external accounts or unavailable infrastructure, document exactly what could not be tested.
+
+Never report a test as passing unless it was actually executed and passed.
+
+---
+
+# 24. DEBUGGING AND ERROR HANDLING
+
+Inspect the browser console and server logs.
+
+Resolve:
+- Runtime exceptions.
+- Unhandled promise rejections.
+- React key warnings.
+- TypeScript errors.
+- Build errors.
+- Invalid state transitions.
+- Missing assets.
+- Incorrect image paths.
+- Stale network responses.
+- WebSocket lifecycle errors.
+- Duplicate event listeners.
+- Timer leaks.
+- Broken keyboard shortcuts.
+- Modal focus problems.
+- Unexpected layout shifts.
+
+Provide appropriate error handling for:
+- Network failure.
+- Server failure.
+- Invalid actions.
+- Insufficient funds.
+- Missing images.
+- Expired rooms.
+- Lost connections.
+- Unauthorized actions.
+- Invalid user input.
+- Unexpected match states.
+
+Do not suppress errors merely to produce a clean console.
+
+Fix the underlying causes.
+
+Ensure error handling does not leave the match in an inconsistent state.
+
+---
+
+# 25. DOCUMENTATION AND MAINTAINABILITY
+
+Keep the project understandable and maintainable.
+
+Update relevant documentation for:
+- Setup.
+- Environment variables.
+- Development commands.
+- Build commands.
+- Test commands.
+- Multiplayer setup.
+- Data persistence.
+- Game rules.
+- Supported functionality.
+- Known limitations.
+- Production deployment requirements.
+
+Avoid unnecessary comments that merely restate obvious code.
+
+Document complex game rules and important architectural decisions.
+
+Remove genuinely unused code introduced during the redesign only after confirming that it is no longer required.
+
+Keep naming consistent.
+
+Do not leave a collection of conflicting stylesheets and overrides when a cleaner shared design system is practical.
+
+Do not make sweeping file deletions without understanding their purpose.
+
+---
+
+# 26. REQUIRED EXECUTION STRATEGY
+
+Perform the work in the following order, but do not stop at reporting each phase.
+
+## Phase 1: Audit and checkpoint
+
+Inspect the entire codebase, establish a safe backup, identify the current working state, and document the main defects.
+
+## Phase 2: Fix critical layout defects
+
+Resolve text clipping, board cropping, broken tile layouts, modal overflow, and obvious rendering failures.
+
+## Phase 3: Establish the final visual design
+
+Apply the minimalist black-and-white interface and board design consistently across the application.
+
+## Phase 4: Audit all landmark photographs
+
+Validate the mapping between properties and images, replace incorrect or unreliable assets, and provide graceful fallbacks.
+
+## Phase 5: Complete the gameplay rules
+
+Fix movement, purchases, rent, development, auctions, trading, events, bankruptcy, and victory.
+
+## Phase 6: Complete the interface
+
+Ensure every visible button and control performs its intended action.
+
+## Phase 7: Complete multiplayer
+
+Verify authoritative state, turn validation, concurrent actions, room handling, reconnection, and synchronization.
+
+## Phase 8: Complete progression
+
+Verify rewards, challenges, tokens, cosmetics, achievements, statistics, and leaderboard behavior.
+
+## Phase 9: Optimize performance
+
+Improve rendering, image loading, network activity, and backend efficiency based on actual findings.
+
+## Phase 10: Strengthen security and data integrity
+
+Fix discovered authorization, validation, persistence, and transaction problems.
+
+## Phase 11: Run comprehensive tests
+
+Run existing tests, add regression coverage, build the project, and verify actual browser rendering and complete matches where possible.
+
+## Phase 12: Final polish
+
+Inspect every screen, remove visual inconsistencies, fix discovered regressions, and verify that the game remains playable.
+
+**Do not make one enormous batch of unverified changes.** Work in coherent stages, validate each stage, and continue automatically to the next stage while the available environment permits.
+
+If one tool or service is unavailable, continue with the other feasible tasks instead of abandoning the entire project.
+
+If you encounter an important limitation, document it accurately and complete everything that can be completed without it.
+
+---
+
+# 27. STRICT RULES YOU MUST FOLLOW
+
+1. Do not rebuild the project from scratch.
+2. Do not discard working features.
+3. Do not overwrite the only working copy.
+4. Do not create a static mockup instead of a functioning game.
+5. Do not use pixel art as a substitute for actual landmark photographs.
+6. Do not make all photographs black and white.
+7. Do not create a generic AI-looking dashboard.
+8. Do not hide countries or important text to make the board appear cleaner.
+9. Do not shrink all fonts to fix clipping.
+10. Do not leave dead buttons or misleading controls.
+11. Do not replace real multiplayer with local-only simulation.
+12. Do not trust the client with authoritative financial transactions.
+13. Do not claim payments are functional without a verified integration.
+14. Do not invent tests, screenshots, results, image sources, or performance measurements.
+15. Do not remove existing features merely because their current implementation is crowded.
+16. Do not add complicated dependencies without justification.
+17. Do not refactor the entire architecture unnecessarily.
+18. Do not stop after fixing the visual design.
+19. Do not stop after making the build pass.
+20. Do not stop after producing a checklist.
+21. Do not ask for approval for every small implementation decision.
+22. Use sensible engineering judgment and continue with the next actionable task.
+23. Preserve unrelated user changes.
+24. Make a real attempt to resolve every critical defect discovered.
+25. Report anything that remains incomplete honestly.
+
+---
+
+# 28. FINAL ACCEPTANCE CRITERIA
+
+The game is complete only when the following requirements have been addressed and verified to the extent permitted by the available environment.
+
+### Visual quality
+- The interface is consistently minimalist.
+- The board and UI are predominantly black, white, and neutral.
+- Landmark photographs retain their natural colors.
+- The board is visually balanced.
+- Important text is readable.
+- Country names, cities, and prices are not unintentionally cropped.
+- Controls are easy to find.
+- The interface does not feel crowded.
+- The game looks like one cohesive product.
+
+### Gameplay
+- A match can be started.
+- Players can take valid turns.
+- Dice movement works.
+- Purchases work.
+- Rent works.
+- Development works.
+- Auctions work.
+- Trading works.
+- Event cards work.
+- The game reaches a legitimate ending.
+- Results are displayed correctly.
+- A new match can be started without corrupting previous state.
+
+### Board editions
+- Bharat Samrat works.
+- Global Tycoon works.
+- Property data remains correct.
+- Landmark photography is correctly mapped.
+- Switching editions does not corrupt the game state.
+
+### Multiplayer
+- Rooms can be created and joined where supported.
+- The server validates important actions.
+- Connected clients remain synchronized.
+- Invalid actions are rejected.
+- Duplicate transactions are prevented.
+- Reconnection and disconnection behavior is handled where implemented.
+
+### Stability
+- No known critical runtime blocker remains.
+- No important gameplay action leaves the match stuck.
+- Error handling is meaningful.
+- State transitions remain consistent.
+- Assets fail gracefully.
+- The build succeeds.
+
+### Optimization
+- Unnecessary rendering work is reduced where measurable.
+- Image loading is efficient.
+- Resource leaks are addressed.
+- Backend operations are reasonably efficient.
+- Performance claims are supported by actual measurements.
+
+### Verification
+- Existing tests are run.
+- Relevant new tests are added.
+- Actual browser rendering is checked where possible.
+- Responsive layouts are inspected.
+- A complete match is verified where possible.
+- Multiplayer is tested with multiple clients where possible.
+- Remaining limitations are documented.
+
+---
+
+# 29. FINAL IMPLEMENTATION REPORT
+
+After making the changes, provide a concise but specific report containing:
+
+1. **Overall status:** What is complete, what remains incomplete, and why.
+2. **Visual redesign:** What changed and how the final design follows the requested direction.
+3. **Text and layout fixes:** The actual causes of clipping and the fixes applied.
+4. **Photographs:** Which image sources and property mappings were checked, and which remain unresolved.
+5. **Gameplay:** Which rules and complete-match flows were verified.
+6. **Multiplayer:** Which room, synchronization, and reconnection flows were tested.
+7. **Security:** Which actual defects were identified and corrected.
+8. **Performance:** Which optimizations were implemented and what was measured.
+9. **Files changed:** The important files and their changes.
+10. **Tests:** The exact commands executed and their actual results.
+11. **Browser verification:** Which viewport sizes and interactions were actually checked.
+12. **Remaining limitations:** Any features that could not be completed or verified.
+13. **Next required action:** Only if a genuine external dependency, missing credential, unavailable service, or other unavoidable blocker remains.
+
+Do not mark the project complete merely because the build passes.
+
+Do not mark a feature complete merely because its UI exists.
+
+Do not mark multiplayer complete because a socket connects.
+
+Do not mark photography complete because URLs have been written into the source code.
+
+Do not mark visual QA complete because the CSS looks reasonable.
+
+Use evidence from the actual implementation and executed checks.
+
+# FINAL COMMAND
+
+Begin immediately by inspecting and backing up the existing Samrat Monopoly project.
+
+Then continue through the entire workflow, make the necessary code changes, run the available tests, inspect the actual interface, fix regressions, optimize the application, and complete the game.
+
+Do not respond with only a plan. Execute the work.
+
+Do not stop after the first successful build.
+
+Do not stop after the first visual improvement.
+
+Do not stop when the interface merely looks finished.
+
+**Finish the entire existing game to the highest practical standard: beautiful, minimalist, readable, genuinely playable, rules-correct, responsive, optimized, secure where applicable, and thoroughly verified.**

@@ -1,0 +1,6 @@
+{
+  "name": "Samrat Monopoly: Bharat & World Edition",
+  "description": "Multiplayer Monopoly board game featuring All-India and World Map editions, major Indian cities and historic landmarks, live property trading, real-time auctions, historical event cards, chat, leaderboards, and daily challenges.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
